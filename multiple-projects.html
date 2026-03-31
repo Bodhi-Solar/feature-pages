@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiple Projects – What's New in Bodhi</title>
+  <link rel="icon" type="image/png" href="images/bodhi_favicon_256x256.png" />
+  <style>
+    :root {
+      --navy:   #00142D;
+      --gold:   #FFD110;
+      --orange: #FF6F47;
+      --teal:   #007A95;
+      --border: #DFE6EE;
+      --bg-light: #F4F7FA;
+      --text:   #000000;
+      --text-secondary: #4D5B6C;
+      --text-muted: #6B7A8D;
+      --white:  #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Harmonia Sans Pro Cyr", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Top bar (logo) ── */
+    .top-bar {
+      background: var(--navy);
+      padding: 16px 24px;
+    }
+
+    .top-bar .container {
+      display: flex;
+      align-items: center;
+    }
+
+    .top-bar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .top-bar .logo-mark {
+      height: 36px;
+      width: auto;
+    }
+
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px 24px 72px;
+      text-align: center;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 46px);
+      font-weight: 700;
+      line-height: 1.15;
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── Section base ── */
+    section {
+      padding: 64px 24px;
+    }
+
+    section.light {
+      background: var(--bg-light);
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    h2 .accent {
+      display: block;
+      width: 40px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-top: 12px;
+    }
+
+    .section-intro {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 660px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Use-case cards ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    .card-icon.teal   { background: #E0F3F7; }
+    .card-icon.gold   { background: #FFF8D6; }
+    .card-icon.orange { background: #FFF0EB; }
+
+    .card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Feature sections (alternating layout) ── */
+    .feature-block {
+      display: flex;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .feature-block.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .feature-content {
+      flex: 1;
+    }
+
+    .feature-content h2 {
+      margin-bottom: 16px;
+    }
+
+    .feature-content p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+
+    .feature-list li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 6px 0 6px 26px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feature-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-list li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ── Screenshots ── */
+    .img-placeholder {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .screenshot-btn {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: zoom-in;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .screenshot-btn:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      transform: translateY(-2px);
+    }
+
+    .screenshot-btn img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* ── Lightbox modal ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    #lightbox.open {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: min(92vw, 1100px);
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+
+    #lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    #lightbox-close:hover {
+      background: rgba(255,255,255,0.28);
+    }
+
+    /* ── Screenshot gallery (2-up) ── */
+    .screenshot-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── Nickname pills ── */
+    .nickname-examples {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .nickname-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .nickname-pill .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-solar  { background: var(--teal); }
+    .dot-battery { background: var(--gold); border: 1px solid #ccc; }
+    .dot-service { background: var(--orange); }
+
+    /* ── Message routing callouts ── */
+    .routing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .routing-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+
+    .routing-item .channel {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .routing-item h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .routing-item p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .message-preview {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      font-family: monospace;
+    }
+
+    .message-preview .highlight {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    details {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: var(--teal);
+    }
+
+    summary {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 18px 20px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+
+    details[open] summary::after {
+      content: "\2212";
+    }
+
+    .faq-answer {
+      padding: 0 20px 18px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .faq-answer p + p {
+      margin-top: 10px;
+    }
+
+    code {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      font-size: 13px;
+      font-family: monospace;
+      color: var(--navy);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      color: var(--white);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    footer h2 {
+      color: var(--white);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    footer h2 .accent {
+      background: var(--gold);
+      margin: 12px auto 0;
+    }
+
+    footer p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      margin-top: 12px;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      section {
+        padding: 48px 20px;
+      }
+
+      .feature-block,
+      .feature-block.reverse {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .img-placeholder {
+        width: 100%;
+      }
+
+      .screenshot-pair {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Top bar with logo ── -->
+  <div class="top-bar">
+    <div class="container">
+      <a class="logo" href="#">
+        <img src="images/bodhi_logo_yellow.png" alt="Bodhi" class="logo-mark" />
+      </a>
+    </div>
+  </div>
+
+  <!-- ── Hero ── -->
+  <header class="hero">
+    <div class="container">
+      <span class="badge">What's New in Bodhi</span>
+      <h1>One homeowner. Multiple projects. One clear experience.</h1>
+      <p>Bodhi now supports multiple projects under a single homeowner record — so your team can manage every system, job, and property without workarounds or duplicate contacts.</p>
+    </div>
+  </header>
+
+  <!-- ── Use Cases ── -->
+  <section class="light">
+    <div class="container">
+      <p class="section-label">Why it matters</p>
+      <h2>When you need Multiple Projects<span class="accent"></span></h2>
+      <p class="section-intro">Every project your customer has with you deserves its own journey, its own documents, and its own communication thread — tracked cleanly in one place.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon teal">
+            <!-- Repeat / refresh icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#007A95" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 2l4 4-4 4"/>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+              <path d="M7 22l-4-4 4-4"/>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+          </div>
+          <h3>Repeat customers</h3>
+          <p>When a homeowner comes back for a battery add-on, a system expansion, or a new install at a different address, Bodhi can now track each project separately — without creating duplicate contacts or losing history.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon gold">
+            <!-- Wrench / service icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00142D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <h3>Multiple service jobs</h3>
+          <p>Managing several service and repair visits for the same homeowner? Each job gets its own project in Bodhi, with its own journey, messaging, and documentation — all tied to the same customer record.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon orange">
+            <!-- Building / portfolio icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FF6F47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="9" width="13" height="13" rx="1"/>
+              <path d="M8 9V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4"/>
+              <line x1="6" y1="14" x2="6" y2="14"/>
+              <line x1="10" y1="14" x2="10" y2="14"/>
+              <line x1="6" y1="18" x2="6" y2="18"/>
+              <line x1="10" y1="18" x2="10" y2="18"/>
+            </svg>
+          </div>
+          <h3>Portfolio of commercial projects</h3>
+          <p>For commercial customers with multiple properties, each location becomes its own project. Your team gets a clear view of every system in a portfolio without the complexity of separate accounts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How Projects Are Created ── -->
+  <section>
+    <div class="container">
+      <p class="section-label">Creating projects</p>
+      <h2>How multiple projects get created<span class="accent"></span></h2>
+      <p class="section-intro">New projects can be created automatically through your CRM, or manually from the installer inbox. Each new project gets its own journey, documents, and message thread — completely separate from other projects for the same homeowner.</p>
+
+      <!-- Row 1: text left, image right -->
+      <div class="feature-block" style="margin-bottom: 48px;">
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Automatic via CRM integration</h3>
+          <ul class="feature-list">
+            <li><strong>No action required</strong> — If your company's CRM is integrated with Bodhi, new projects are created automatically when they appear in the CRM and match the account creation trigger.</li>
+            <li><strong>Journey starts automatically</strong> — The new project triggers the appropriate journey, sends the homeowner the Touch 0 message, and notifies your PM and sales rep — just like a first project would.</li>
+          </ul>
+        </div>
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_1.jpg" alt="Project dropdown with '+' control in the installer inbox right pane" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2: image left, text right -->
+      <div class="feature-block reverse">
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_2.jpg" alt="'Add a new project' modal showing project nickname, journey, address, and system details" />
+          </button>
+        </div>
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Manually from the installer inbox</h3>
+          <ul class="feature-list">
+            <li><strong>Click the "+" button</strong> in the project section of the right pane to open the new project form.</li>
+            <li><strong>CRM prefill</strong> — If data for the additional project is available in the CRM, the project details are prefilled automatically. Review and confirm to create.</li>
+            <li><strong>Manual entry</strong> — When CRM data isn't available, fill in the details directly: address, journey, utility, system size, and key dates.</li>
+            <li><strong>Add or archive projects</strong> — Use the controls next to the project dropdown to add a new project or archive one that's no longer active.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Project Nicknames ── -->
+  <section class="light">
+    <div class="container">
+      <p class="section-label">Project identification</p>
+      <h2>How projects are identified: Project Nicknames<span class="accent"></span></h2>
+      <p class="section-intro">Every project in Bodhi gets a <strong>Project Nickname</strong> — a clear, human-readable label that makes it easy to tell projects apart at a glance.</p>
+
+      <!-- Row 1: image left, text right -->
+      <div class="feature-block reverse" style="margin-bottom: 48px;">
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_3.jpg" alt="Project Nicknames in the installer inbox project dropdown" />
+          </button>
+        </div>
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Auto-generated from your Journey settings</h3>
+          <p>Nicknames are generated using the format: <code>{Project Type} #{N} @ {Street}, {City}</code></p>
+          <div class="nickname-examples">
+            <span class="nickname-pill"><span class="dot dot-solar"></span>Solar Project #1 @ 123 Main St, Austin</span>
+            <span class="nickname-pill"><span class="dot dot-battery"></span>Battery Project #1 @ 123 Main St, Austin</span>
+            <span class="nickname-pill"><span class="dot dot-service"></span>Service Project #1 @ 456 Oak Ave, Austin</span>
+          </div>
+          <ul class="feature-list">
+            <li>The <strong>project type</strong> comes from your Journey settings — your team sets these labels (e.g., "Solar Project", "Battery Project").</li>
+            <li>The <strong>number</strong> increments automatically when the same customer has more than one project of the same type.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Row 2: text left, image right -->
+      <div class="feature-block">
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Editable anytime</h3>
+          <ul class="feature-list">
+            <li>Nicknames are <strong>editable</strong> — update them from the installer inbox right pane at any time using the Edit Project Details modal.</li>
+            <li>Changes apply to <strong>future messages only</strong> — already-sent email subjects and SMS are not retroactively updated.</li>
+            <li>Nicknames appear <strong>everywhere</strong>: in the installer inbox, in the homeowner portal, and in all outbound messages.</li>
+          </ul>
+        </div>
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_4.jpg" alt="Edit project details modal showing the editable Project Nickname field" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Installer Inbox ── -->
+  <section>
+    <div class="container">
+      <p class="section-label">For your team</p>
+      <h2>How projects appear in the installer inbox<span class="accent"></span></h2>
+      <p class="section-intro">The installer inbox makes it easy to navigate between projects and always know which system a conversation is about.</p>
+
+      <!-- Row 1: text left, image right -->
+      <div class="feature-block" style="margin-bottom: 48px;">
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Project dropdown &amp; message labels</h3>
+          <ul class="feature-list">
+            <li><strong>Project dropdown in the right pane</strong> — Switch between a homeowner's projects using the dropdown right below the contact information on the right pane. The pane updates to show that project's journey, system details, documents, activity, and notes.</li>
+            <li><strong>Nickname labels on every message bubble</strong> — Each message in the conversation thread is labeled with its project's Project Nickname, so your team can see at a glance which system a message belongs to.</li>
+          </ul>
+        </div>
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_5.jpg" alt="Installer inbox showing project dropdown in the right pane and Project Nickname labels on message bubbles" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2: image left, text right -->
+      <div class="feature-block reverse">
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_6.jpg" alt="Project selector in the compose area showing the active project before sending a message" />
+          </button>
+        </div>
+        <div class="feature-content">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Compose with project context</h3>
+          <ul class="feature-list">
+            <li><strong>Project selector in the compose area</strong> — When writing a message, choose which project it belongs to using the selector above the text input. This determines how the message is labeled and routed.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Message Routing ── -->
+  <section class="light">
+    <div class="container">
+      <p class="section-label">Clear context in every message</p>
+      <h2>How messages are identified by Project Nickname<span class="accent"></span></h2>
+      <p class="section-intro">When a homeowner has multiple projects, every message — in both directions — carries the Project Nickname so there's never any confusion about which project a conversation is about.</p>
+
+      <div class="routing-grid">
+        <div class="routing-item">
+          <p class="channel">SMS</p>
+          <h3>Text messages</h3>
+          <p>Every outbound SMS is prefixed with the Project Nickname in brackets. When the homeowner replies, Bodhi routes the reply back to the correct project automatically.</p>
+          <div class="message-preview"><span class="highlight">[Solar Project #1 @ 123 Main St, Austin]</span> Your installation is scheduled for Tuesday at 9am...</div>
+        </div>
+        <div class="routing-item">
+          <p class="channel">Email</p>
+          <h3>Email messages</h3>
+          <p>Outbound emails include the Project Nickname in the subject line. When a homeowner replies, Bodhi reads the nickname from the subject and associates the reply with the right project.</p>
+          <div class="message-preview">Subject: <span class="highlight">[Solar Project #1 @ 123 Main St, Austin]</span> Your permit has been submitted</div>
+        </div>
+        <div class="routing-item">
+          <p class="channel">Homeowner portal</p>
+          <h3>Portal messages</h3>
+          <p>Messages sent from the homeowner portal are automatically associated with the project the homeowner was viewing — or the one they selected in the compose area.</p>
+          <div class="message-preview">Project: <span class="highlight">Battery Project #1 @ 123 Main St, Austin</span><br/>Hi, do you have an update on my battery install?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Homeowner Portal ── -->
+  <section>
+    <div class="container">
+      <p class="section-label">For homeowners</p>
+      <h2>How projects appear in the homeowner portal<span class="accent"></span></h2>
+      <p class="section-intro">Homeowners with multiple projects get a clear, organized experience in their Bodhi portal — making it easy to stay on top of every system they have with you.</p>
+
+      <!-- Screenshot 1: Project selector + dashboard -->
+      <div class="feature-block" style="margin-bottom: 48px;">
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_7.jpg" alt="Homeowner portal project selector dropdown open showing multiple projects with progress rings and phases" />
+          </button>
+        </div>
+        <div class="feature-content" style="flex: 1;">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">Project selector &amp; dashboard</h3>
+          <ul class="feature-list">
+            <li>A <strong>project selector in the portal header</strong> lets homeowners switch between their projects. Each project shows a progress ring and current phase.</li>
+            <li>The <strong>dashboard updates entirely</strong> when a project is selected — showing that project's progress tracker, "What's Next" card, system details, and recent messages.</li>
+            <li>Journey steps, dates, and system specs all come from the selected project, so homeowners always see the right information.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Screenshot 2: All Messages page -->
+      <div class="feature-block reverse">
+        <div class="feature-content" style="flex: 1;">
+          <h3 style="font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 12px;">All Messages view</h3>
+          <ul class="feature-list">
+            <li>The <strong>All Messages page</strong> shows every conversation in a single chronological timeline — messages from all projects appear together.</li>
+            <li>Each message bubble is <strong>labeled with its Project Nickname</strong>, so homeowners can always tell which system a message is about.</li>
+            <li>When sending a new message, homeowners use a <strong>project selector above the compose area</strong> to choose which project they're asking about.</li>
+            <li>Documents are also <strong>grouped by project</strong> on the Documents page, making it easy to find files for a specific system.</li>
+          </ul>
+        </div>
+
+        <div class="img-placeholder" style="flex: 1.2;">
+          <button class="screenshot-btn" aria-label="Enlarge screenshot">
+            <img src="images/screenshot_8.jpg" alt="Homeowner portal All Messages page showing messages from multiple projects labeled with Project Nicknames" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="light">
+    <div class="container">
+      <p class="section-label">Common questions</p>
+      <h2>Frequently asked questions<span class="accent"></span></h2>
+      <p class="section-intro">Everything you need to know about how Multiple Projects works in practice.</p>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>Do I need to do anything to enable this?</summary>
+          <div class="faq-answer">
+            <p>No. Multiple Projects is automatically enabled for all Bodhi accounts. There's nothing you need to configure to get started. If you have an active CRM integration, new projects will begin flowing in automatically as they're created in your CRM.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What happens to my existing homeowners when this rolls out?</summary>
+          <div class="faq-answer">
+            <p>Nothing changes. Each existing homeowner record automatically becomes the first project under that customer. All historical messages, documents, journey progress, and system details are preserved exactly as they are. No data is lost, and no action is needed from your team.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What happens if a project comes in from the CRM for a homeowner already in Bodhi?</summary>
+          <div class="faq-answer">
+            <p>Bodhi matches the incoming email or phone number to the existing customer and adds the new project under their record. No duplicate contact is created. The new project gets its own journey, nickname, and message thread — all linked to the same homeowner.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Is there a limit to how many projects a homeowner can have?</summary>
+          <div class="faq-answer">
+            <p>No hard limit. Bodhi supports as many projects as needed per customer — whether that's two solar installs, a battery add-on, or a full portfolio of commercial sites.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What if a homeowner only has one project — does anything change for them?</summary>
+          <div class="faq-answer">
+            <p>No. Single-project homeowners see the same experience as before. The project selector in the homeowner portal only appears when there are multiple projects, and outbound messages won't include a Project Nickname unless the homeowner has more than one project.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Does the homeowner need a separate login for each project?</summary>
+          <div class="faq-answer">
+            <p>No. Homeowners log in once and see all their projects. Authentication is at the customer level, not the project level. After logging in, they can switch between projects using the selector in the portal header.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Where do I configure project type names like "Solar Project" or "Battery Project"?</summary>
+          <div class="faq-answer">
+            <p>On the <strong>Journey settings page</strong>. Each journey has a <strong>Project Name</strong> field — set it to whatever label fits your workflow (e.g., "Solar Project", "Battery Project", "Service &amp; Repair"). Bodhi uses that label to generate Project Nicknames across the platform.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Do automated journey messages get tagged to the right project?</summary>
+          <div class="faq-answer">
+            <p>Yes. Every automated message — journey steps, NPS surveys, review requests — is associated with the project whose journey triggered it. The message displays the correct Project Nickname in both the installer inbox and the homeowner's view, so there's no ambiguity about which system it refers to.</p>
+          </div>
+        </details>
+
+
+        <details>
+          <summary>Are documents separated by project?</summary>
+          <div class="faq-answer">
+            <p>Yes. In the homeowner portal, documents are grouped under headings for each project, making it easy for homeowners to find files for a specific system. In the installer inbox, documents appear in the selected project's section of the right pane, so your team always sees the right files for the project they're working on.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Are internal notes project-specific?</summary>
+          <div class="faq-answer">
+            <p>Yes. Internal notes in the installer inbox are tied to the selected project. Notes your team writes about one system stay with that project and don't bleed into another — keeping context clean when a homeowner has multiple active jobs.</p>
+          </div>
+        </details>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container">
+      <h2>Have questions?<span class="accent"></span></h2>
+      <p>Multiple Projects is live and enabled for your account. If you run into anything or need help getting set up, reach out to the Bodhi support team.</p>
+      <p style="margin-top: 20px; font-size: 18px;"><a href="mailto:support@bodhi.solar">support@bodhi.solar</a></p>
+    </div>
+  </footer>
+
+  <!-- ── Lightbox modal ── -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button id="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.screenshot-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        lightboxImg.src = btn.querySelector('img').src;
+        lightboxImg.alt = btn.querySelector('img').alt;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
